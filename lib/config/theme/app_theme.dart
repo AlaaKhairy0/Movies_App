@@ -5,12 +5,21 @@ import 'package:movies_app/core/colors_manager.dart';
 
 class AppTheme {
   static ThemeData dark = ThemeData(
-      iconButtonTheme:  IconButtonThemeData(
+
+      appBarTheme: AppBarTheme(
+        color: ColorsManager.bottomNavBg,
+        centerTitle: true,
+      elevation: 0,
+        titleTextStyle: AppStyle.appBar,
+
+      ),
+          iconButtonTheme:  IconButtonThemeData(
           style: ButtonStyle(
             iconSize: WidgetStatePropertyAll(28.sp),
         foregroundColor: const WidgetStatePropertyAll(Colors.white),
       )),
       dividerColor: const Color(0xff707070),
+
       scaffoldBackgroundColor: ColorsManager.scaffoldBg,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: ColorsManager.bottomNavBg,
