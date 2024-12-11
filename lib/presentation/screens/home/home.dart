@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
-import 'package:movies_app/presentation/screens/home/taps/browse.dart';
+import 'package:movies_app/presentation/screens/home/taps/browse/browse.dart';
 import 'package:movies_app/presentation/screens/home/taps/home.dart';
 import 'package:movies_app/presentation/screens/home/taps/search.dart';
-import 'package:movies_app/presentation/screens/home/taps/watchList.dart';
+import 'package:movies_app/presentation/screens/home/taps/watchList/watchList.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

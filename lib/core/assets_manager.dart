@@ -3,4 +3,6 @@ class AssetsManager{
   static const String search = 'assets/images/searchIcon.png';
   static const String browse = 'assets/images/browseIcon.png';
   static const String watchList = 'assets/images/watchListIcon.png';
+  static const String categoryItem = 'assets/images/category.png';
+
 }
