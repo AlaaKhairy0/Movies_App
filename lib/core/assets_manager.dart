@@ -1,4 +1,5 @@
 class AssetsManager{
+
   static const String base = 'assets/images';
   static const String home = '$base/Home icon.png';
   static const String search = '$base/searchIcon.png';
@@ -11,4 +12,6 @@ class AssetsManager{
   static const String saveIcon = '$base/save.png';
   static const String star = '$base/star.png';
   static const String spider = '$base/spider.png';
+  static const String categoryItem = '$base/category.png';
+
 }
