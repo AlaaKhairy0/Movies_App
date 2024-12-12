@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+class BrowseTab extends StatelessWidget {
+  const BrowseTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Placeholder(
-      color: Colors.red,
+      color: Colors.green,
     );
   }
 }
