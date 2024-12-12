@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
-import 'package:movies_app/presentation/screens/home/taps/watchList/movie_item.dart';
+import 'package:movies_app/presentation/screens/home/taps/watchList/watchList_item.dart';
+import 'package:movies_app/presentation/screens/home/taps/widgets/movie_item.dart';
 
 class WatchListTab extends StatelessWidget {
   const WatchListTab({super.key});
@@ -21,7 +22,7 @@ class WatchListTab extends StatelessWidget {
           Expanded(
               child: ListView.separated(
                 padding: EdgeInsets.all(0),
-                  itemBuilder: (context, index) => WatchlistItem(),
+                  itemBuilder: (context, index) => WatchListItem(),
                   separatorBuilder: (context, index) => Divider(
                         height: 1,
                       ),

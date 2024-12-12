@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: RoutesManager.router,
-        initialRoute: RoutesManager.movieDetails,
+        initialRoute: RoutesManager.splash,
         themeMode: ThemeMode.dark,
         darkTheme: AppTheme.dark,
         theme: AppTheme.light,

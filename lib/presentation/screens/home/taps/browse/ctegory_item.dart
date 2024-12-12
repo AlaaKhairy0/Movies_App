@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/routes_manager.dart';
+import 'package:movies_app/data/model/categories_response/CategoriesResponse.dart';
+import 'package:movies_app/data/model/categories_response/Genres.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key});
-
+   CategoryItem({super.key,required this.category});
+  Genres category;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, RoutesManager.categoryDetails);
+        Navigator.pushNamed(context, RoutesManager.categoryDetails,arguments: category);
       },
       child: Container(
         alignment: Alignment.center,
@@ -22,7 +24,7 @@ class CategoryItem extends StatelessWidget {
             fit: BoxFit.fitWidth,
           ),
         ),
-        child: Text('Action',style: AppStyle.categoryLabel,),
+        child: Text(category.name??'',style: AppStyle.categoryLabel,),
       ),
     );
   }
