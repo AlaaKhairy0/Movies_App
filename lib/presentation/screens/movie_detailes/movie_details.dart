@@ -9,15 +9,12 @@ import '../home/taps/widgets/card_description.dart';
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(StringsManager.appbarTitle),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {},
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -25,21 +22,21 @@ class MovieDetails extends StatelessWidget {
           children: [
             Image.asset(AssetsManager.slider),
             Padding(
-              padding: EdgeInsets.only(top: 15.h, left: 20.w),
+              padding: REdgeInsets.only(top: 15, left: 20),
               child: Text(
                 StringsManager.sliderTitle,
                 style: AppStyle.textFilmDetails,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 5.h, left: 20.w),
+              padding: REdgeInsets.only(top: 5, left: 20),
               child: Text(
                 StringsManager.sliderDate,
                 style: AppStyle.dateSlider,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 18.h, left: 18.w),
+              padding: REdgeInsets.only(top: 18, left: 18),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -48,14 +45,14 @@ class MovieDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 15.w),
+                        padding: REdgeInsets.only(left: 15),
                         child: Container(
                           width: 65.w,
                           height: 25.h,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: ColorsManager.gray2, width: 2.w),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.r),
                             color: Colors.transparent,
                           ),
                           child: Center(
@@ -66,13 +63,15 @@ class MovieDetails extends StatelessWidget {
                           ),
                         ),
                       ),
-                    Padding(
-                      padding:  EdgeInsets.only(left: 14.w,top: 10.h
-                      ),
-                      child: Text(StringsManager.descriptionFilm,style: AppStyle.descriptionFilm,),
-                    ),
                       Padding(
-                        padding: const EdgeInsets.all(14),
+                        padding: REdgeInsets.only(left: 14, top: 10),
+                        child: Text(
+                          StringsManager.descriptionFilm,
+                          style: AppStyle.descriptionFilm,
+                        ),
+                      ),
+                      Padding(
+                        padding: REdgeInsets.all(14),
                         child: Row(
                           children: [
                             Image.asset(
@@ -95,33 +94,42 @@ class MovieDetails extends StatelessWidget {
                 ],
               ),
             ),
-          SizedBox(height: 15.h,),
+            SizedBox(
+              height: 15.h,
+            ),
             Container(
-              color: ColorsManager.gray,
+              margin: REdgeInsets.only(bottom: 32),
+              color: ColorsManager.gray2,
               width: double.infinity,
-              height: 255.h,
+              height: 276.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 15.w, top: 9.h,bottom: 8.h),
+                    padding: REdgeInsets.only(left: 15, top: 9, bottom: 2),
                     child: Text(
                       StringsManager.moreLikeThis,
                       style: AppStyle.titleListView,
                     ),
                   ),
-                  SizedBox(
-                    height: 200.h,
+                  Container(
+                    padding: REdgeInsets.only(left: 16),
+                    height: 220.h,
                     child: ListView.builder(
                       itemBuilder: (context, index) => Padding(
-                        padding:  EdgeInsets.only(right: 13,top: 5.h),
-                        child: CardDescription(),
+                        padding: REdgeInsets.only(right: 13, top: 5),
+                        child: Padding(
+                          padding: REdgeInsets.symmetric(vertical: 6),
+                          child: CardDescription(),
+                        ),
                       ),
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
                     ),
                   ),
-                  SizedBox(height: 12.h,)
+                  SizedBox(
+                    height: 12.h,
+                  )
                 ],
               ),
             ),

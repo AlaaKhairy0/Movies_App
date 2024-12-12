@@ -18,9 +18,12 @@ class _FilmCardState extends State<FilmCard> {
       SizedBox(
         width: 129.w,
         height: 199.h,
-        child: Image.asset(
-          AssetsManager.imageCard,
-          fit: BoxFit.cover,
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(6.r)),
+          child: Image.asset(
+            AssetsManager.imageCard,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
       GestureDetector(

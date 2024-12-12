@@ -20,24 +20,25 @@ class HomeTab extends StatelessWidget {
             children: [
               CarouselSliderWidget(),
               Container(
-                color: ColorsManager.gray,
+                color: ColorsManager.gray2,
                 width: double.infinity,
-                height: 200.h,
+                height: 240.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 15.w, top: 9.h,bottom: 8.h),
+                      padding: REdgeInsets.only(left: 15, top: 9,bottom: 8),
                       child: Text(
                         StringsManager.newReleases,
                         style: AppStyle.titleListView,
                       ),
                     ),
-                    SizedBox(
-                      height: 150.h,
+                    Container(
+                      padding: REdgeInsets.only(left: 16),
+                      height: 180.h,
                       child: ListView.builder(
                         itemBuilder: (context, index) => Padding(
-                          padding:  EdgeInsets.only(right: 13),
+                          padding:  REdgeInsets.only(right: 13),
                           child: FilmCard(),
                         ),
                         scrollDirection: Axis.horizontal,
@@ -49,25 +50,29 @@ class HomeTab extends StatelessWidget {
               ),
               SizedBox(height: 30.h,),
               Container(
-                color: ColorsManager.gray,
+                color: ColorsManager.gray2,
                 width: double.infinity,
-                height: 255.h,
+                height: 270.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 15.w, top: 9.h,bottom: 8.h),
+                      padding: REdgeInsets.only(left: 15, top: 9,bottom: 8),
                       child: Text(
                         StringsManager.recomended,
                         style: AppStyle.titleListView,
                       ),
                     ),
-                    SizedBox(
-                      height: 200.h,
+                    Container(
+                      padding: REdgeInsets.only(left: 16,bottom: 8,),
+                      height: 224.h,
                       child: ListView.builder(
                         itemBuilder: (context, index) => Padding(
                           padding:  EdgeInsets.only(right: 13,top: 5.h),
-                          child: CardDescription(),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 6),
+                            child: CardDescription(),
+                          ),
                         ),
                         scrollDirection: Axis.horizontal,
                         itemCount: 5,

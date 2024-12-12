@@ -19,21 +19,18 @@ class _CardDescriptionState extends State<CardDescription> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorsManager.gray2,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(12),
-          bottomRight: Radius.circular(12),
-        ),
+        color: ColorsManager.gray,
+        borderRadius: BorderRadius.all(Radius.circular(6.r)),
         boxShadow: [
           BoxShadow(
-            color: Color(0xff514F4F).withOpacity(.5),
-
-            offset: Offset(
-              2.0, // Move to right 10  horizontally
+            color: Colors.black.withOpacity(.16),
+            offset: const Offset(
+              0.0, // Move to right 10  horizontally
               2.0, // Move to bottom 10 Vertically
-
             ),
-          )
+            blurRadius: 3,
+
+          ),
         ],
       ),
       height: 194.h,
