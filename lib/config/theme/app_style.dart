@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/core/colors_manager.dart';
 
 class AppStyle {
   static TextStyle bottomNavLabel = GoogleFonts.inter(
@@ -60,6 +61,12 @@ class AppStyle {
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: Colors.white.withOpacity(.67),
+  );  static TextStyle search  = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: ColorsManager.graySearch,
   );
+
+
 
 }

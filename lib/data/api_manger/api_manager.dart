@@ -34,4 +34,18 @@ class ApiManager {
     FilteredMoviesResponse filteredMoviesResponse = FilteredMoviesResponse.fromJson(json);
     return filteredMoviesResponse;
   }
+  static Future<FilteredMoviesResponse> search( {required String query}) async {
+    Uri url = Uri.https(baseUrl, '/3/search/movie', {
+      'api_key': apiKey,
+      'Authorization': apiAccessToken,
+      'query':query,
+    });
+
+    var response = await http.get(url);
+
+    var json = jsonDecode(response.body);
+    FilteredMoviesResponse filteredMoviesResponse = FilteredMoviesResponse.fromJson(json);
+    return filteredMoviesResponse;
+  }
+
 }
