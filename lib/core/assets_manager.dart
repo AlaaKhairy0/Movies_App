@@ -13,5 +13,6 @@ class AssetsManager{
   static const String star = '$base/star.png';
   static const String spider = '$base/spider.png';
   static const String categoryItem = '$base/category.png';
+  static const String noResult = '$base/noResult.png';
 
 }

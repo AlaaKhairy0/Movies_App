@@ -14,6 +14,7 @@ class CategoriesResponse {
   }
   List<Genres>? genres;
 
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     if (genres != null) {

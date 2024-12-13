@@ -7,4 +7,5 @@ class ColorsManager{
   static const Color scaffoldBg = Color(0xff121312);
   static const Color gray = Color(0xff343534);
   static const Color gray2 = Color(0xff282A28);
+  static const Color graySearch = Color(0xff707070);
 }
