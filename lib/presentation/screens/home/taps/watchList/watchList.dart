@@ -22,7 +22,7 @@ class _WatchListTabState extends State<WatchListTab> {
     getMovieFromFireStore();
     if(movies.isEmpty) return const Center(child: CircularProgressIndicator(color: ColorsManager.yellow,));
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding:  REdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,12 +33,12 @@ class _WatchListTabState extends State<WatchListTab> {
           ),
           Expanded(
               child: ListView.separated(
-                  padding: EdgeInsets.all(0),
+                  padding: REdgeInsets.all(0),
                   itemBuilder: (context, index) => WatchListItem(
                         movie: movies[index],
                       ),
                   separatorBuilder: (context, index) => Divider(
-                        height: 1,
+                        height: 1.h,
                       ),
                   itemCount: movies.length))
         ],

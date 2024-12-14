@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/routes_manager.dart';
-import 'package:movies_app/data/model/movies_response/MoviesResponse.dart';
 import 'package:movies_app/data/model/movies_response/Results.dart';
 
 import '../../../../../core/constatns_manager.dart';
