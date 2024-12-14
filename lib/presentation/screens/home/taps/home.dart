@@ -12,6 +12,7 @@ import 'package:movies_app/presentation/screens/home/taps/widgets/carousel_slide
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +92,7 @@ class HomeTab extends StatelessWidget {
               Container(
                 color: ColorsManager.gray2,
                 width: double.infinity,
-                height: 280.h,
+                height: 290.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -104,7 +105,7 @@ class HomeTab extends StatelessWidget {
                     ),
                     Container(
                       padding: REdgeInsets.only(left: 16, bottom: 8,),
-                      height: 230.h,
+                      height: 240.h,
                       child: FutureBuilder(
                         future: ApiManager.getRecommended(),
                         builder: (context, snapshot) {
