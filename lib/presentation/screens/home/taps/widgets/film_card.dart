@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/routes_manager.dart';
+import 'package:movies_app/data/model/movies_response/MoviesResponse.dart';
 import 'package:movies_app/data/model/movies_response/Results.dart';
 
 import '../../../../../core/constatns_manager.dart';
@@ -30,13 +32,14 @@ class _FilmCardState extends State<FilmCard> {
             borderRadius: BorderRadius.all(Radius.circular(6.r)),
             child: Image.network(
               '${ConstantsManager.baseNetworkImgUrl}${widget.results?.posterPath}',
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),
         GestureDetector(
             onTap: () {
               widget.isClicked = !widget.isClicked;
+              widget.isClicked ? sendMovieToFireStore():deleteMovieFromFireStore(widget.results.id.toString());
               setState(() {});
             },
             child: Image.asset(
@@ -48,5 +51,21 @@ class _FilmCardState extends State<FilmCard> {
             )),
       ]),
     );
+  }
+  void sendMovieToFireStore(){
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('movies');
+    DocumentReference documentReference = collectionReference.doc(widget.results.id.toString());
+    Results movie = Results(
+      id: widget.results.id,
+      title: widget.results.title,
+      posterPath: widget.results.posterPath,
+      releaseDate: widget.results.releaseDate,
+      overview: widget.results.overview,
+    );
+    documentReference.set(movie.toJson());
+  }
+  Future<void> deleteMovieFromFireStore(String movieId)async{
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('movies');
+    await collectionReference.doc(movieId).delete();
   }
 }

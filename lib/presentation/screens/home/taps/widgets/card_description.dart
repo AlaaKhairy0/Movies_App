@@ -3,18 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
-import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/data/model/movies_response/Results.dart';
 import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
 
 import '../../../../../core/routes_manager.dart';
 
 class CardDescription extends StatefulWidget {
-  CardDescription({super.key,required this.results});
+  CardDescription({super.key, required this.results});
 
   Results results;
-  bool isClicked = false;
-
   @override
   State<CardDescription> createState() => _CardDescriptionState();
 }
@@ -45,28 +42,10 @@ class _CardDescriptionState extends State<CardDescription> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(children: [
-              SizedBox(
+            SizedBox(
                 width: 130.w,
                 height: 130.h,
-                child: Image.network(
-                  '${ConstantsManager.baseNetworkImgUrl}${widget.results?.posterPath}',
-                  fit: BoxFit.fill,
-                ),
-              ),
-              GestureDetector(
-                  onTap: () {
-                    widget.isClicked = !widget.isClicked;
-                    setState(() {});
-                  },
-                  child: Image.asset(
-                    widget.isClicked
-                        ? AssetsManager.saveIcon
-                        : AssetsManager.unSaveIcon,
-                    height: 36.h,
-                    width: 27.w,
-                  )),
-            ]),
+                child: FilmCard(results: widget.results)),
             Padding(
               padding: EdgeInsets.only(top: 8.h, left: 8.w),
               child: Row(
@@ -80,7 +59,7 @@ class _CardDescriptionState extends State<CardDescription> {
                     width: 5.w,
                   ),
                   Text(
-                   widget.results?.voteAverage.toString() ?? "" ,
+                    widget.results?.voteAverage.toString() ?? "",
                     style: AppStyle.textSlider,
                   ),
                 ],
@@ -89,14 +68,14 @@ class _CardDescriptionState extends State<CardDescription> {
             Padding(
               padding: EdgeInsets.only(left: 7.w),
               child: Text(
-                widget.results?.title.toString() ?? "" ,
+                widget.results?.title.toString() ?? "",
                 style: AppStyle.textSlider,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 7.w),
               child: Text(
-                widget.results?.releaseDate.toString() ?? "" ,
+                widget.results?.releaseDate.toString() ?? "",
                 style: AppStyle.dateSlider,
               ),
             ),

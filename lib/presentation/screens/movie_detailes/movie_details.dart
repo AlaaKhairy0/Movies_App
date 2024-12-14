@@ -132,7 +132,7 @@ class MovieDetails extends StatelessWidget {
               margin: REdgeInsets.only(bottom: 32),
               color: ColorsManager.gray2,
               width: double.infinity,
-              height: 281.h,
+              height: 286.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -145,7 +145,7 @@ class MovieDetails extends StatelessWidget {
                   ),
                   Container(
                       padding: REdgeInsets.only(left: 16),
-                      height: 225.h,
+                      height: 231.h,
                       child: FutureBuilder(
                         future:
                             ApiManager.getSimilarMovies(movie.id.toString()),
