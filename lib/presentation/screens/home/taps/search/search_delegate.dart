@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
-import 'package:movies_app/data/model/filtered_movies_response/Results.dart';
+import 'package:movies_app/data/model/movies_response/Results.dart';
 import 'package:movies_app/presentation/screens/home/taps/widgets/movie_item.dart';
 
 import '../../../../../config/theme/app_style.dart';

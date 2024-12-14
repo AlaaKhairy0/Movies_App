@@ -8,7 +8,7 @@ import '../../../config/theme/app_style.dart';
 import '../home/taps/widgets/card_description.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({super.key});
+   MovieDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,3 @@
 class ConstantsManager{
-  static const String baseNetworkImgUrl = 'https://image.tmdb.org/t/p/w200';
+  static const String baseNetworkImgUrl = 'https://image.tmdb.org/t/p/w500';
 }
