@@ -3,11 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
+import 'package:movies_app/core/constatns_manager.dart';
+import 'package:movies_app/data/model/movies_response/Results.dart';
 import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
 
 class CardDescription extends StatefulWidget {
-  CardDescription({super.key});
+  CardDescription({super.key, this.results});
 
+  Results? results;
   bool isClicked = false;
 
   @override
@@ -29,7 +32,6 @@ class _CardDescriptionState extends State<CardDescription> {
               2.0, // Move to bottom 10 Vertically
             ),
             blurRadius: 3,
-
           ),
         ],
       ),
@@ -42,8 +44,8 @@ class _CardDescriptionState extends State<CardDescription> {
             SizedBox(
               width: 130.w,
               height: 130.h,
-              child: Image.asset(
-                AssetsManager.spider,
+              child: Image.network(
+                '${ConstantsManager.baseNetworkImgUrl}${widget.results?.posterPath}',
                 fit: BoxFit.fill,
               ),
             ),
@@ -73,7 +75,7 @@ class _CardDescriptionState extends State<CardDescription> {
                   width: 5.w,
                 ),
                 Text(
-                  '7.7',
+                 widget.results?.voteAverage.toString() ?? "" ,
                   style: AppStyle.textSlider,
                 ),
               ],
@@ -82,14 +84,14 @@ class _CardDescriptionState extends State<CardDescription> {
           Padding(
             padding: EdgeInsets.only(left: 7.w),
             child: Text(
-              'Deadpool 2',
+              widget.results?.title.toString() ?? "" ,
               style: AppStyle.textSlider,
             ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 7.w),
             child: Text(
-              '2018  R  1h 59m',
+              widget.results?.releaseDate.toString() ?? "" ,
               style: AppStyle.dateSlider,
             ),
           ),

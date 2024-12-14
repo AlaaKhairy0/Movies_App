@@ -1,13 +1,13 @@
 import 'Results.dart';
 
-class FilteredMoviesResponse {
-  FilteredMoviesResponse({
+class MoviesResponse {
+  MoviesResponse({
       this.page, 
       this.results, 
       this.totalPages, 
       this.totalResults,});
 
-  FilteredMoviesResponse.fromJson(dynamic json) {
+  MoviesResponse.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/constatns_manager.dart';
-import 'package:movies_app/data/model/filtered_movies_response/Results.dart';
+import 'package:movies_app/data/model/movies_response/Results.dart';
 
 class MovieItem extends StatelessWidget {
   MovieItem({super.key, required this.movie});

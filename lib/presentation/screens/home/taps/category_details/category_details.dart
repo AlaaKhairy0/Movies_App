@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/data/api_manger/api_manager.dart';
 import 'package:movies_app/data/model/categories_response/Genres.dart';
-import 'package:movies_app/data/model/filtered_movies_response/Results.dart';
+import 'package:movies_app/data/model/movies_response/Results.dart';
 import '../widgets/movie_item.dart';
 
 class CategoryDetails extends StatelessWidget {

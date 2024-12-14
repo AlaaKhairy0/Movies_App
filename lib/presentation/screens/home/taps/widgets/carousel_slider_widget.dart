@@ -4,16 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
+import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
+import 'package:movies_app/data/model/movies_response/Results.dart';
 import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
-  const CarouselSliderWidget({super.key});
+  CarouselSliderWidget({super.key, required this.movies});
+  List<Results> movies ;
+  Results? results;
 
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      itemCount: 15,
+
+      itemCount: movies.length,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
           Column(
         children: [
@@ -26,11 +31,17 @@ class CarouselSliderWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(AssetsManager.slider),
+                    Image.network(
+                        '${ConstantsManager.baseNetworkImgUrl}${movies[itemIndex]?.backdropPath}',),
                   ],
                 ),
               ),
-              Positioned(top: 100.h, left: 20.w, child: FilmCard()),
+              Positioned(
+                  top: 100.h,
+                  left: 20.w,
+                  child: FilmCard(
+                    results: movies[itemIndex],
+                  )),
               Positioned(
                   top: 230.h,
                   left: 180.w,
@@ -38,11 +49,11 @@ class CarouselSliderWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        StringsManager.sliderTitle,
+                        movies[itemIndex]?.title ?? "",
                         style: AppStyle.textSlider,
                       ),
                       Text(
-                        StringsManager.sliderDate,
+                        movies[itemIndex]?.releaseDate ?? "",
                         style: AppStyle.dateSlider,
                       )
                     ],
