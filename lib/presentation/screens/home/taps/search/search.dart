@@ -20,6 +20,7 @@ class SearchTab extends StatelessWidget {
             child: SizedBox(
               width: 345.w,
               child: TextField(
+                keyboardType: TextInputType.none,
 
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -50,10 +51,9 @@ class SearchTab extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 140.h,
-          ),
+          const Spacer(),
           Image.asset(AssetsManager.noResult,width: 120.w,height: 120.h,),
+          const Spacer(),
         ],
       ),
     );

@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: RoutesManager.router,
+        onGenerateRoute: (settings) {
+          return RoutesManager.router(settings);
+        },
         initialRoute: RoutesManager.splash,
         themeMode: ThemeMode.dark,
         darkTheme: AppTheme.dark,

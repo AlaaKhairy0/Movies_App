@@ -7,7 +7,7 @@ import 'package:movies_app/data/model/movies_response/Results.dart';
 import '../widgets/movie_item.dart';
 
 class CategoryDetails extends StatelessWidget {
-   CategoryDetails({super.key,});
+   const CategoryDetails({super.key,});
   //Genres category;
   @override
   Widget build(BuildContext context) {

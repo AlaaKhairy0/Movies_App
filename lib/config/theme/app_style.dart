@@ -14,7 +14,7 @@ class AppStyle {
     color: Colors.white
   );
   static TextStyle textSlider = GoogleFonts.inter(
-      fontSize: 12.sp,
+      fontSize: 14.sp,
       fontWeight: FontWeight.w700,
       color: Colors.white
   );  static TextStyle rateText = GoogleFonts.inter(

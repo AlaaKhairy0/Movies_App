@@ -5,7 +5,6 @@ import 'package:movies_app/core/colors_manager.dart';
 
 class AppTheme {
   static ThemeData dark = ThemeData(
-
       appBarTheme: AppBarTheme(
         color: ColorsManager.bottomNavBg,
         centerTitle: true,
