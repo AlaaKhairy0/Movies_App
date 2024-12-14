@@ -9,20 +9,16 @@ import '../../../../../config/theme/app_style.dart';
 import '../../../../../data/api_manger/api_manager.dart';
 
 class MovieSearchDelegate extends SearchDelegate {
-
   @override
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
-    return theme.copyWith (
-
-textTheme: const TextTheme(labelMedium: TextStyle(color: Colors.white)),
+    return theme.copyWith(
+        textTheme: const TextTheme(labelMedium: TextStyle(color: Colors.white)),
         appBarTheme: const AppBarTheme(
-
           color: ColorsManager.scaffoldBg,
         ),
-        inputDecorationTheme:  const InputDecorationTheme(
-
+        inputDecorationTheme: const InputDecorationTheme(
           labelStyle: TextStyle(color: Colors.white),
           filled: true,
           fillColor: ColorsManager.gray2,
@@ -63,9 +59,9 @@ textTheme: const TextTheme(labelMedium: TextStyle(color: Colors.white)),
   @override
   Widget buildResults(BuildContext context) {
     return Container(
+      margin: REdgeInsets.symmetric(horizontal: 16),
       decoration: const BoxDecoration(
         color: ColorsManager.scaffoldBg,
-
       ),
       child: FutureBuilder(
         future: ApiManager.search(query: query),
@@ -80,10 +76,18 @@ textTheme: const TextTheme(labelMedium: TextStyle(color: Colors.white)),
           }
           List<Results> results = snapshot.data?.results ?? [];
           if (results.isEmpty) {
-            return Center(child: Image.asset(AssetsManager.noResult,width: 120.w,height: 120.h,));
+            return Center(
+                child: Image.asset(
+              AssetsManager.noResult,
+              width: 120.w,
+              height: 120.h,
+            ));
           }
           return Expanded(
-            child: ListView.builder(
+            child: ListView.separated(
+              separatorBuilder: (context, index) => const Divider(
+                height: 1,
+              ),
               itemBuilder: (context, index) => MovieItem(
                 movie: results[index],
               ),
@@ -98,9 +102,9 @@ textTheme: const TextTheme(labelMedium: TextStyle(color: Colors.white)),
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container(
+      margin: REdgeInsets.symmetric(horizontal: 16),
       decoration: const BoxDecoration(
         color: ColorsManager.scaffoldBg,
-
       ),
       child: FutureBuilder(
         future: ApiManager.search(query: query),
@@ -115,7 +119,12 @@ textTheme: const TextTheme(labelMedium: TextStyle(color: Colors.white)),
           }
           List<Results> results = snapshot.data?.results ?? [];
           if (results.isEmpty) {
-            return Center(child: Image.asset(AssetsManager.noResult,width: 120.w,height: 120.h,));
+            return Center(
+                child: Image.asset(
+              AssetsManager.noResult,
+              width: 120.w,
+              height: 120.h,
+            ));
           }
           return Expanded(
             child: ListView.builder(

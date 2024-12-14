@@ -5,6 +5,7 @@ import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/data/model/movies_response/Results.dart';
 
 import '../../../../../core/routes_manager.dart';
+import 'film_card.dart';
 
 class MovieItem extends StatelessWidget {
   MovieItem({super.key, required this.movie});
@@ -20,13 +21,10 @@ class MovieItem extends StatelessWidget {
         padding: REdgeInsets.symmetric(vertical: 16),
         child: Row(
           children: [
-            ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(4.r)),
-                child: Image.network(
-                  '${ConstantsManager.baseNetworkImgUrl}${movie.posterPath}',
-                  width: 140.w,
-                  height: 140.h,
-                )),
+            SizedBox(
+              height: 155.h,
+              child: FilmCard(results: movie),
+            ),
             SizedBox(
               width: 10.w,
             ),
