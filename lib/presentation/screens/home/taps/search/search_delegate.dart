@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
-import 'package:movies_app/data/model/movies_response/Results.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/movie_item.dart';
+import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/presentation/common/movie_item.dart';
 
 import '../../../../../config/theme/app_style.dart';
 import '../../../../../data/api_manger/api_manager.dart';
@@ -74,7 +74,7 @@ class MovieSearchDelegate extends SearchDelegate {
           if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
-          List<Results> results = snapshot.data?.results ?? [];
+          List<Movie> results = snapshot.data?.results ?? [];
           if (results.isEmpty) {
             return Center(
                 child: Image.asset(
@@ -117,7 +117,7 @@ class MovieSearchDelegate extends SearchDelegate {
           if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
-          List<Results> results = snapshot.data?.results ?? [];
+          List<Movie> results = snapshot.data?.results ?? [];
           if (results.isEmpty) {
             return Center(
                 child: Image.asset(

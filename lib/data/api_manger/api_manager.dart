@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movies_app/data/model/categories_response/CategoriesResponse.dart';
+import 'package:movies_app/data/model/categories_response/categories_response.dart';
+import 'package:movies_app/data/model/categories_response/genre.dart';
 import 'package:movies_app/data/model/movie_details_response/MovieDetailsResponse.dart';
-import 'package:movies_app/data/model/movies_response/MoviesResponse.dart';
+import 'package:movies_app/data/model/movies_response/movies_response.dart';
+import 'package:movies_app/result.dart';
 
 class ApiManager {
   static String baseUrl = 'api.themoviedb.org';
@@ -10,17 +12,26 @@ class ApiManager {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWEzNmQwMzMxZjViZjkwMzIyODJkYTNkZjIzM2RlNyIsIm5iZiI6MTczMzc5ODI4Mi45MTgwMDAyLCJzdWIiOiI2NzU3YTk4YTMxZjlkMWM4ZjIzNzBhZjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Vk5nw3sTbjNo50yc4IcLbudE44J2qQwBi4CHj09OCf0';
   static String apiKey = 'dea36d0331f5bf9032282da3df233de7';
 
-  static Future<CategoriesResponse> getCategories() async {
+  static Future<Result<List<Genre>>> getCategories() async {
     Uri url = Uri.https(baseUrl, '/3/genre/movie/list', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
     });
 
-    var response = await http.get(url);
+    try{
+      var response = await http.get(url);
+      var json = jsonDecode(response.body);
+      CategoriesResponse categoriesResponse = CategoriesResponse.fromJson(json);
+      if(categoriesResponse.statusMessage != null){
+        return ServerError(message: categoriesResponse.statusMessage??'');
+      }else{
+        return Success(data: categoriesResponse.genres??[]);
+      }
 
-    var json = jsonDecode(response.body);
-    CategoriesResponse categoriesResponse = CategoriesResponse.fromJson(json);
-    return categoriesResponse;
+    }on Exception catch(e){
+      return Error(exception: e);
+    }
+
   }
 
   static Future<MoviesResponse> getMoviesByCategory(String genre) async {

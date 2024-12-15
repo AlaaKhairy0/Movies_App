@@ -4,10 +4,10 @@ import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/data/api_manger/api_manager.dart';
-import 'package:movies_app/data/model/movies_response/Results.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/card_description.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/carousel_slider_widget.dart';
+import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/presentation/common/card_description.dart';
+import 'package:movies_app/presentation/common/film_card.dart';
+import 'package:movies_app/presentation/screens/home/taps/home/carousel_slider_widget.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -32,7 +32,7 @@ class HomeTab extends StatelessWidget {
                   if (snapshot.hasError) {
                     return Text(snapshot.error.toString());
                   }
-                  List<Results> movies = snapshot.data.results
+                  List<Movie> movies = snapshot.data.results
                       ?? [];
                   return CarouselSliderWidget(movies: movies,);
                 },
@@ -67,7 +67,7 @@ class HomeTab extends StatelessWidget {
                             if (snapshot.hasError) {
                               return Text(snapshot.error.toString());
                             }
-                            List<Results> movies = snapshot.data?.results
+                            List<Movie> movies = snapshot.data?.results
                                 ?? [];
                             return ListView.builder(
 
@@ -119,7 +119,7 @@ class HomeTab extends StatelessWidget {
                           if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           }
-                          List<Results> movies = snapshot.data?.results
+                          List<Movie> movies = snapshot.data?.results
                               ?? [];
                           return ListView.builder(
                             itemBuilder: (context, index) =>

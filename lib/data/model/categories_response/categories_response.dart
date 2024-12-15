@@ -1,18 +1,22 @@
-import 'Genres.dart';
+import 'genre.dart';
 
 class CategoriesResponse {
   CategoriesResponse({
-      this.genres,});
+      this.genres,
+    this.statusMessage,
+  });
 
   CategoriesResponse.fromJson(dynamic json) {
     if (json['genres'] != null) {
       genres = [];
       json['genres'].forEach((v) {
-        genres?.add(Genres.fromJson(v));
+        genres?.add(Genre.fromJson(v));
       });
     }
+    statusMessage = json['status_message'];
   }
-  List<Genres>? genres;
+  List<Genre>? genres;
+  String? statusMessage;
 
 
   Map<String, dynamic> toJson() {

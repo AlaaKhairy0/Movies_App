@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/routes_manager.dart';
-import 'package:movies_app/data/model/categories_response/CategoriesResponse.dart';
-import 'package:movies_app/data/model/categories_response/Genres.dart';
+import 'package:movies_app/data/model/categories_response/categories_response.dart';
+import 'package:movies_app/data/model/categories_response/genre.dart';
 
 class CategoryItem extends StatelessWidget {
    CategoryItem({super.key,required this.category});
-  Genres category;
+  Genre category;
 
   @override
   Widget build(BuildContext context) {

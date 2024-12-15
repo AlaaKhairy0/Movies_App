@@ -5,17 +5,17 @@ import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/presentation/screens/home/taps/watchList/watchList_item.dart';
 
-import '../../../../../data/model/movies_response/Results.dart';
+import '../../../../../data/model/movies_response/movie.dart';
 
 class WatchListTab extends StatefulWidget {
-   WatchListTab({super.key});
+   const WatchListTab({super.key});
 
   @override
   State<WatchListTab> createState() => _WatchListTabState();
 }
 
 class _WatchListTabState extends State<WatchListTab> {
-  List<Results> movies = [];
+  List<Movie> movies = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _WatchListTabState extends State<WatchListTab> {
     );
   }
 
-  void getMovieFromFireStore() async {
+   void getMovieFromFireStore() async {
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('movies');
     QuerySnapshot collectionSnapshot = await collectionReference.get();
@@ -54,7 +54,7 @@ class _WatchListTabState extends State<WatchListTab> {
     movies = documentsSnapShot.map(
       (docSnapShot) {
         Map<String, dynamic> json = docSnapShot.data() as Map<String, dynamic>;
-        Results movie = Results.fromJson(json);
+        Movie movie = Movie.fromJson(json);
         return movie;
       },
     ).toList();

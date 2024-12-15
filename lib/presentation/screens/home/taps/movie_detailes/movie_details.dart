@@ -6,17 +6,19 @@ import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/data/api_manger/api_manager.dart';
 import 'package:movies_app/data/model/movie_details_response/MovieDetailsResponse.dart';
-import 'package:movies_app/data/model/movies_response/Results.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
-import '../../../config/theme/app_style.dart';
-import '../home/taps/widgets/card_description.dart';
+import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/presentation/common/film_card.dart';
+
+import '../../../../../config/theme/app_style.dart';
+import '../../../../common/card_description.dart';
+
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Results movie = ModalRoute.of(context)!.settings.arguments as Results;
+    Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return Scaffold(
       appBar: AppBar(
         title: Text(movie.title ?? ''),
@@ -161,7 +163,7 @@ class MovieDetails extends StatelessWidget {
                           if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           }
-                          List<Results> movies = snapshot.data?.results ?? [];
+                          List<Movie> movies = snapshot.data?.results ?? [];
                           return ListView.builder(
                             itemBuilder: (context, index) => Padding(
                               padding: REdgeInsets.only(right: 13, top: 5),

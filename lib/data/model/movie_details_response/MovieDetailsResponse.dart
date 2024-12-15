@@ -6,6 +6,7 @@ import 'SpokenLanguages.dart';
 
 class MovieDetailsResponse {
   MovieDetailsResponse({
+    this.statusMessage,
       this.adult, 
       this.backdropPath, 
       this.belongsToCollection, 
@@ -31,9 +32,11 @@ class MovieDetailsResponse {
       this.title, 
       this.video, 
       this.voteAverage, 
-      this.voteCount,});
+      this.voteCount,
+  });
 
   MovieDetailsResponse.fromJson(dynamic json) {
+    statusMessage = json['status_message'];
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     belongsToCollection = json['belongs_to_collection'] != null ? BelongsToCollection.fromJson(json['belongs_to_collection']) : null;
@@ -81,6 +84,7 @@ class MovieDetailsResponse {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
+  String? statusMessage;
   bool? adult;
   String? backdropPath;
   BelongsToCollection? belongsToCollection;

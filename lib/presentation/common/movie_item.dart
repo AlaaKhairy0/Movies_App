@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/constatns_manager.dart';
-import 'package:movies_app/data/model/movies_response/Results.dart';
+import 'package:movies_app/data/model/movies_response/movie.dart';
 
-import '../../../../../core/routes_manager.dart';
+import '../../core/routes_manager.dart';
 import 'film_card.dart';
 
 class MovieItem extends StatelessWidget {
   MovieItem({super.key, required this.movie});
 
-  Results movie;
+  Movie movie;
 
   @override
   Widget build(BuildContext context) {

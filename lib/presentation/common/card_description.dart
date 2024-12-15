@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
-import 'package:movies_app/data/model/movies_response/Results.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
+import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/presentation/common/film_card.dart';
 
-import '../../../../../core/routes_manager.dart';
+import '../../core/routes_manager.dart';
 
 class CardDescription extends StatefulWidget {
   CardDescription({super.key, required this.results});
 
-  Results results;
+  Movie results;
   @override
   State<CardDescription> createState() => _CardDescriptionState();
 }

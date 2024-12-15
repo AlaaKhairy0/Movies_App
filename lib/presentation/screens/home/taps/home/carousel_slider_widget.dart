@@ -6,17 +6,17 @@ import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
-import 'package:movies_app/data/model/movies_response/Results.dart';
-import 'package:movies_app/presentation/screens/home/taps/widgets/film_card.dart';
+import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/presentation/common/film_card.dart';
 
 import '../../../../../core/routes_manager.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
   CarouselSliderWidget({super.key, required this.movies});
 
-  List<Results> movies;
+  List<Movie> movies;
 
-  Results? results;
+  Movie? results;
 
   @override
   Widget build(BuildContext context) {
