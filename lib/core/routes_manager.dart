@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:movies_app/presentation/screens/movie_detailes/movie_details.dart';
-
-import 'package:movies_app/presentation/screens/home/taps/category_details/category_details.dart';
+import 'package:movies_app/presentation/screens/home/taps/category_details/category_details_view/category_details_view.dart';
 
 import 'package:movies_app/presentation/screens/splash/splash.dart';
 
 import '../presentation/screens/home/home.dart';
+import '../presentation/screens/home/taps/movie_detailes/movie_details_view/movie_details_view.dart';
 
 class RoutesManager {
   static const String splash = '/splash';
@@ -18,22 +17,21 @@ class RoutesManager {
     switch (settings.name) {
       case splash:
         return MaterialPageRoute(
-          builder: (context) => Splash(),
+          builder: (context) => const Splash(),
         );
       case home:
         return MaterialPageRoute(
-          builder: (context) => Home(),
+          builder: (context) => const Home(),
         );
       case movieDetails:
         return MaterialPageRoute(
-            builder: (context) => MovieDetails(
-
-                ),
-            settings: settings);
+          builder: (context) => const MovieDetailsView(),
+          settings: settings,
+        );
 
       case categoryDetails:
         return MaterialPageRoute(
-          builder: (context) => CategoryDetails(),
+          builder: (context) => const CategoryDetailsView(),
           settings: settings,
         );
     }

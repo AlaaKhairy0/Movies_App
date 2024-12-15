@@ -49,7 +49,7 @@ class _BrowseViewState extends State<BrowseView> {
                   ),
                   Expanded(
                     child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: (1 / .85),
                         crossAxisCount: 2,
                         crossAxisSpacing: 16,
@@ -71,49 +71,5 @@ class _BrowseViewState extends State<BrowseView> {
         },
       ),
     );
-
-    //   FutureBuilder(
-    //   future: ApiManager.getCategories(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.waiting) {
-    //       return CircularProgressIndicator();
-    //     }
-    //     if (snapshot.hasError) {
-    //       return Text(snapshot.error.toString());
-    //     }
-    //     List<Genre> categories = snapshot.data?.genres ?? [];
-    //     return Padding(
-    //       padding: REdgeInsets.all(15),
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: [
-    //           SizedBox(
-    //             height: 30.h,
-    //           ),
-    //           Text(
-    //             'Browse Category ',
-    //             style: AppStyle.tabHeader,
-    //           ),
-    //           Expanded(
-    //             child: GridView.builder(
-    //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //                 childAspectRatio: (1 / .85),
-    //                 crossAxisCount: 2,
-    //                 crossAxisSpacing: 16,
-    //               ),
-    //               padding: const EdgeInsets.all(0),
-    //               itemBuilder: (context, index) {
-    //                 return CategoryItem(
-    //                   category: categories[index],
-    //                 );
-    //               },
-    //               itemCount: categories.length,
-    //             ),
-    //           )
-    //         ],
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }

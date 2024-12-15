@@ -4,7 +4,7 @@ import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/presentation/screens/home/taps/browse/browse_view/browse_view.dart';
 import 'package:movies_app/presentation/screens/home/taps/home/home.dart';
 import 'package:movies_app/presentation/screens/home/taps/search/search.dart';
-import 'package:movies_app/presentation/screens/home/taps/watchList/watchList.dart';
+import 'package:movies_app/presentation/screens/home/taps/watchList/watchList_view/watchList_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,13 +15,19 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int currentIndex = 0;
-  List<Widget> tabs = [
-    HomeTab(),
-    SearchTab(),
-    BrowseView(),
-    WatchListTab(),
-  ];
-
+  final GlobalKey<WatchListViewState> watchListKey = GlobalKey();
+  List<Widget> tabs = [];
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    tabs=[
+      HomeTab(),
+      SearchTab(),
+      BrowseView(),
+      WatchListView(key: watchListKey,),
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +42,9 @@ class _HomeState extends State<Home> {
         onTap: (value) {
           currentIndex = value;
           setState(() {});
+          if (value == 3) {
+            // Call getMovieFromFireStore when Watch List tab is selected
+            watchListKey.currentState?.getMoviesFromFireStore();}
         },
 
         items: const [

@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
+import 'package:movies_app/config/theme/app_style.dart';
 import '../../result.dart';
 
 class ErrorStateWidget extends StatelessWidget {
@@ -26,6 +25,7 @@ class ErrorStateWidget extends StatelessWidget {
           Text(
             extractError(),
             textAlign: TextAlign.center,
+            style: AppStyle.tabHeader,
           ),
           SizedBox(
             height: 4,

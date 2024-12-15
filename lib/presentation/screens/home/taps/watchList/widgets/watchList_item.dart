@@ -4,8 +4,8 @@ import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/constatns_manager.dart';
 
-import '../../../../../core/routes_manager.dart';
-import '../../../../../data/model/movies_response/movie.dart';
+import '../../../../../../core/routes_manager.dart';
+import '../../../../../../data/model/movies_response/movie.dart';
 
 class WatchListItem extends StatelessWidget {
   WatchListItem({super.key, required this.movie});
