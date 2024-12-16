@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/presentation/screens/home/taps/browse/browse_view/browse_view.dart';
-import 'package:movies_app/presentation/screens/home/taps/home/home.dart';
+import 'package:movies_app/presentation/screens/home/taps/home/home_view/home_view.dart';
 import 'package:movies_app/presentation/screens/home/taps/search/search.dart';
 import 'package:movies_app/presentation/screens/home/taps/watchList/watchList_view/watchList_view.dart';
 
@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     tabs=[
-      HomeTab(),
+      HomeView(),
       SearchTab(),
       BrowseView(),
       WatchListView(key: watchListKey,),
@@ -35,7 +35,6 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: buildBottomNavBar(),
     );
   }
-
   Widget buildBottomNavBar() {
     return BottomNavigationBar(
         currentIndex: currentIndex,

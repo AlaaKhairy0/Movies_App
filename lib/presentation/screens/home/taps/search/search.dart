@@ -4,6 +4,7 @@ import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/presentation/screens/home/taps/search/search_delegate.dart';
+import 'package:movies_app/presentation/screens/home/taps/search/search_viewModel.dart';
 
 class SearchTab extends StatelessWidget {
   const SearchTab({super.key});
@@ -46,7 +47,7 @@ class SearchTab extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  showSearch(context: context, delegate: MovieSearchDelegate());
+                  showSearch(context: context, delegate: MovieSearchDelegate(SearchViewModel()));
                 },
               ),
             ),

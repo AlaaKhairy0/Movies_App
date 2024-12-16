@@ -35,197 +35,106 @@ class MovieDetailsView extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   viewModel..getMovieDetails(movie.id.toString()),
-              child: BlocBuilder<MovieDetailsViewModel,BaseState>(builder: (context, state) {
-                if(state is SuccessState){
-                  MovieDetailsResponse movieDetails = state.data as MovieDetailsResponse;
-                  return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.network(
-                                  '${ConstantsManager.baseNetworkImgUrl}${movieDetails.backdropPath}'),
-                              Padding(
-                                padding: REdgeInsets.only(top: 15, left: 20),
-                                child: Text(
-                                  movieDetails.title ?? '',
-                                  style: AppStyle.textFilmDetails,
+              child: BlocBuilder<MovieDetailsViewModel, BaseState>(
+                builder: (context, state) {
+                  if (state is SuccessState) {
+                    MovieDetailsResponse movieDetails =
+                        state.data as MovieDetailsResponse;
+                    return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.network(
+                              '${ConstantsManager.baseNetworkImgUrl}${movieDetails.backdropPath}'),
+                          Padding(
+                            padding: REdgeInsets.only(top: 15, left: 20),
+                            child: Text(
+                              movieDetails.title ?? '',
+                              style: AppStyle.textFilmDetails,
+                            ),
+                          ),
+                          Padding(
+                            padding: REdgeInsets.only(top: 5, left: 20),
+                            child: Text(
+                              movieDetails.releaseDate ?? '',
+                              style: AppStyle.dateSlider,
+                            ),
+                          ),
+                          Padding(
+                            padding: REdgeInsets.only(top: 18, left: 18),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FilmCard(
+                                  results: movie,
                                 ),
-                              ),
-                              Padding(
-                                padding: REdgeInsets.only(top: 5, left: 20),
-                                child: Text(
-                                  movieDetails.releaseDate ?? '',
-                                  style: AppStyle.dateSlider,
-                                ),
-                              ),
-                              Padding(
-                                padding: REdgeInsets.only(top: 18, left: 18),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FilmCard(
-                                      results: movie,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            height: 30.h,
-                                            padding: REdgeInsets.only(left: 16),
-                                            child: GridView.builder(
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisSpacing: 8,
-                                                crossAxisCount: 3,
-                                                childAspectRatio: (1 / .4),
-                                              ),
-                                              itemCount: movieDetails.genres!.length,
-                                              itemBuilder: (context, index) =>
-                                                  buildMovieCategories(
-                                                      movieDetails.genres![index].name ??
-                                                          ''),
-                                            ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 30.h,
+                                        padding: REdgeInsets.only(left: 16),
+                                        child: GridView.builder(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisSpacing: 8,
+                                            crossAxisCount: 3,
+                                            childAspectRatio: (1 / .4),
                                           ),
-                                          Padding(
-                                            padding: REdgeInsets.only(left: 14, top: 10),
-                                            child: Text(
-                                              movieDetails.overview ?? '',
-                                              style: AppStyle.descriptionFilm,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: REdgeInsets.all(14),
-                                            child: Row(
-                                              children: [
-                                                Image.asset(
-                                                  AssetsManager.star,
-                                                  height: 22.h,
-                                                  width: 22.w,
-                                                ),
-                                                SizedBox(
-                                                  width: 5.w,
-                                                ),
-                                                Text(
-                                                  movieDetails.voteAverage.toString(),
-                                                  style: AppStyle.rateText,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                          itemCount:
+                                              movieDetails.genres!.length,
+                                          itemBuilder: (context, index) =>
+                                              buildMovieCategories(movieDetails
+                                                      .genres![index].name ??
+                                                  ''),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding:
+                                            REdgeInsets.only(left: 14, top: 10),
+                                        child: Text(
+                                          movieDetails.overview ?? '',
+                                          style: AppStyle.descriptionFilm,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: REdgeInsets.all(14),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              AssetsManager.star,
+                                              height: 22.h,
+                                              width: 22.w,
+                                            ),
+                                            SizedBox(
+                                              width: 5.w,
+                                            ),
+                                            Text(
+                                              movieDetails.voteAverage
+                                                  .toString(),
+                                              style: AppStyle.rateText,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ]);
-                }if(state is ErrorState){
-                  return ErrorStateWidget();
-                }return LoadingWidget();
-              },),
+                              ],
+                            ),
+                          ),
+                        ]);
+                  }
+                  if (state is ErrorState) {
+                    return ErrorStateWidget();
+                  }
+                  return LoadingWidget();
+                },
+              ),
             ),
-            // FutureBuilder(
-            //   future: ApiManager.getMovieDetails(movie.id.toString()),
-            //   builder: (context, snapshot) {
-            //     if (snapshot.connectionState == ConnectionState.waiting) {
-            //       return const Center(
-            //         child: CircularProgressIndicator(
-            //           color: ColorsManager.yellow,
-            //         ),
-            //       );
-            //     }
-            //     if (snapshot.hasError) {
-            //       return Text(snapshot.error.toString());
-            //     }
-            //     MovieDetailsResponse movieDetails = snapshot.data!;
-            //     return Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         Image.network(
-            //             '${ConstantsManager.baseNetworkImgUrl}${movieDetails.backdropPath}'),
-            //         Padding(
-            //           padding: REdgeInsets.only(top: 15, left: 20),
-            //           child: Text(
-            //             movieDetails.title ?? '',
-            //             style: AppStyle.textFilmDetails,
-            //           ),
-            //         ),
-            //         Padding(
-            //           padding: REdgeInsets.only(top: 5, left: 20),
-            //           child: Text(
-            //             movieDetails.releaseDate ?? '',
-            //             style: AppStyle.dateSlider,
-            //           ),
-            //         ),
-            //         Padding(
-            //           padding: REdgeInsets.only(top: 18, left: 18),
-            //           child: Row(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               FilmCard(
-            //                 results: movie,
-            //               ),
-            //               Expanded(
-            //                 child: Column(
-            //                   crossAxisAlignment: CrossAxisAlignment.start,
-            //                   children: [
-            //                     Container(
-            //                       height: 30.h,
-            //                       padding: REdgeInsets.only(left: 16),
-            //                       child: GridView.builder(
-            //                         physics:
-            //                             const NeverScrollableScrollPhysics(),
-            //                         gridDelegate:
-            //                             SliverGridDelegateWithFixedCrossAxisCount(
-            //                               crossAxisSpacing: 8,
-            //                           crossAxisCount: 3,
-            //                           childAspectRatio: (1 / .4),
-            //                         ),
-            //                         itemCount: movieDetails.genres!.length,
-            //                         itemBuilder: (context, index) =>
-            //                             buildMovieCategories(
-            //                                 movieDetails.genres![index].name ??
-            //                                     ''),
-            //                       ),
-            //                     ),
-            //                     Padding(
-            //                       padding: REdgeInsets.only(left: 14, top: 10),
-            //                       child: Text(
-            //                         movieDetails.overview ?? '',
-            //                         style: AppStyle.descriptionFilm,
-            //                       ),
-            //                     ),
-            //                     Padding(
-            //                       padding: REdgeInsets.all(14),
-            //                       child: Row(
-            //                         children: [
-            //                           Image.asset(
-            //                             AssetsManager.star,
-            //                             height: 22.h,
-            //                             width: 22.w,
-            //                           ),
-            //                           SizedBox(
-            //                             width: 5.w,
-            //                           ),
-            //                           Text(
-            //                             movieDetails.voteAverage.toString(),
-            //                             style: AppStyle.rateText,
-            //                           ),
-            //                         ],
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ],
-            //     );
-            //   },
-            // ),
             SizedBox(
               height: 15.h,
             ),
@@ -247,36 +156,36 @@ class MovieDetailsView extends StatelessWidget {
                   Container(
                       padding: REdgeInsets.only(left: 16),
                       height: 250.h,
-                      child: FutureBuilder(
-                        future:
-                            ApiManager.getSimilarMovies(movie.id.toString()),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: ColorsManager.yellow,
-                              ),
-                            );
-                          }
-                          if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          }
-                          List<Movie> movies = snapshot.data?.results ?? [];
-                          return ListView.builder(
-                            itemBuilder: (context, index) => Padding(
-                              padding: REdgeInsets.only(right: 13, top: 5),
-                              child: Padding(
-                                padding: REdgeInsets.symmetric(vertical: 6),
-                                child: CardDescription(
-                                  results: movies[index],
+                      child: BlocProvider(
+                        create: (context) =>
+                            MovieDetailsViewModel()..getSimilarMovies(movie.id.toString()),
+                        child: BlocBuilder<MovieDetailsViewModel,BaseState>(
+                          builder: (context, state) {
+                            if (state is SuccessState) {
+                              List<Movie> movies = state.data as List<Movie> ;
+                              return ListView.builder(
+                                itemBuilder: (context, index) => Padding(
+                                  padding: REdgeInsets.only(right: 13, top: 5),
+                                  child: Padding(
+                                    padding: REdgeInsets.symmetric(vertical: 6),
+                                    child: CardDescription(
+                                      results: movies[index],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                          );
-                        },
+                                scrollDirection: Axis.horizontal,
+                                itemCount: movies.length,
+                              );
+                            }
+                            if (state is ErrorState) {
+                              return ErrorStateWidget(
+                                serverError: state.serverError,
+                                error: state.error,
+                              );
+                            }
+                            return LoadingWidget();
+                          },
+                        ),
                       )),
                   SizedBox(
                     height: 12.h,

@@ -55,92 +55,128 @@ class ApiManager {
     }
   }
 
-  static Future<MoviesResponse> search({required String query}) async {
+  static Future<Result<List<Movie>>> search({required String query}) async {
     Uri url = Uri.https(baseUrl, '/3/search/movie', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
       'query': query,
     });
+    try{
+      var response = await http.get(url);
 
-    var response = await http.get(url);
-
-    var json = jsonDecode(response.body);
-    MoviesResponse filteredMoviesResponse = MoviesResponse.fromJson(json);
-    return filteredMoviesResponse;
+      var json = jsonDecode(response.body);
+      MoviesResponse filteredMoviesResponse = MoviesResponse.fromJson(json);
+      if (filteredMoviesResponse.statusMessage != null) {
+        return ServerError(message: filteredMoviesResponse.statusMessage ?? '');
+      } else {
+        return Success(data: filteredMoviesResponse.results ?? []);
+      }
+    }on Exception catch(e){
+      return Error(exception: e);
+    }
   }
 
-  static Future<MoviesResponse> getMoviesSlider() async {
+  static Future<Result<List<Movie>>> getMoviesSlider() async {
     Uri url = Uri.https(baseUrl, '/3/movie/popular', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
     });
+    try {
+      var response = await http.get(url);
 
-    var response = await http.get(url);
-
-    var json = jsonDecode(response.body);
-    MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
-    return moviesResponse;
+      var json = jsonDecode(response.body);
+      MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
+      if (moviesResponse.statusMessage != null) {
+        return ServerError(message: moviesResponse.statusMessage ?? '');
+      } else {
+        return Success(data: moviesResponse.results ?? []);
+      }
+    } on Exception catch (e) {
+      return Error(exception: e);
+    }
   }
 
-  static Future<MoviesResponse> getNewReleases() async {
+  static Future<Result<List<Movie>>> getNewReleases() async {
     Uri url = Uri.https(baseUrl, '/3/movie/upcoming', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
     });
+    try {
+      var response = await http.get(url);
 
-    var response = await http.get(url);
-
-    var json = jsonDecode(response.body);
-    MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
-    return moviesResponse;
+      var json = jsonDecode(response.body);
+      MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
+      if (moviesResponse.statusMessage != null) {
+        return ServerError(message: moviesResponse.statusMessage ?? '');
+      } else {
+        return Success(data: moviesResponse.results ?? []);
+      }
+    } on Exception catch (e) {
+      return Error(exception: e);
+    }
   }
 
-  static Future<MoviesResponse> getRecommended() async {
+  static Future<Result<List<Movie>>> getRecommended() async {
     Uri url = Uri.https(baseUrl, '/3/movie/top_rated', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
     });
 
-    var response = await http.get(url);
+    try {
+      var response = await http.get(url);
 
-    var json = jsonDecode(response.body);
-    MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
-    return moviesResponse;
+      var json = jsonDecode(response.body);
+      MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
+      if (moviesResponse.statusMessage != null) {
+        return ServerError(message: moviesResponse.statusMessage ?? '');
+      } else {
+        return Success(data: moviesResponse.results ?? []);
+      }
+    } on Exception catch (e) {
+      return Error(exception: e);
+    }
   }
 
-  static Future<Result<MovieDetailsResponse>> getMovieDetails(String movieId) async {
+  static Future<Result<MovieDetailsResponse>> getMovieDetails(
+      String movieId) async {
     Uri url = Uri.https(baseUrl, '/3/movie/$movieId', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
     });
-    try{
+    try {
       var response = await http.get(url);
 
       var json = jsonDecode(response.body);
       MovieDetailsResponse movieDetailsResponse =
-      MovieDetailsResponse.fromJson(json);
+          MovieDetailsResponse.fromJson(json);
       if (movieDetailsResponse.statusMessage != null) {
         return ServerError(message: movieDetailsResponse.statusMessage ?? '');
       } else {
         return Success(data: movieDetailsResponse);
       }
-
-    }on Exception catch (e){
+    } on Exception catch (e) {
       return Error(exception: e);
     }
-
   }
 
-  static Future<MoviesResponse> getSimilarMovies(String movieId) async {
+  static Future<Result<List<Movie>>> getSimilarMovies(String movieId) async {
     Uri url = Uri.https(baseUrl, '/3/movie/$movieId/similar', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
     });
 
-    var response = await http.get(url);
+    try {
+      var response = await http.get(url);
 
-    var json = jsonDecode(response.body);
-    MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
-    return moviesResponse;
+      var json = jsonDecode(response.body);
+      MoviesResponse moviesResponse = MoviesResponse.fromJson(json);
+      if (moviesResponse.statusMessage != null) {
+        return ServerError(message: moviesResponse.statusMessage ?? '');
+      } else {
+        return Success(data: moviesResponse.results ?? []);
+      }
+    } on Exception catch (e) {
+      return Error(exception: e);
+    }
   }
 }
