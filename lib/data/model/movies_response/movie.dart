@@ -1,19 +1,22 @@
+import 'package:movies_app/domain/entities/movie_entity.dart';
+
 class Movie {
   Movie({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
+  });
 
   Movie.fromJson(dynamic json) {
     adult = json['adult'];
@@ -31,6 +34,7 @@ class Movie {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
+
   bool? adult;
   String? backdropPath;
   List<num>? genreIds;
@@ -65,4 +69,15 @@ class Movie {
     return map;
   }
 
+  MovieEntity toMovieEntity() {
+    return MovieEntity(
+        title: title,
+        overview: overview,
+        releaseDate: releaseDate,
+        posterPath: posterPath,
+        backdropPath: backdropPath,
+        genreIds: genreIds,
+        voteAverage: voteAverage,
+    id :id);
+  }
 }

@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
-import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
 import 'package:movies_app/presentation/common/film_card.dart';
 
 import '../../core/routes_manager.dart';
 
 class CardDescription extends StatefulWidget {
-  CardDescription({super.key, required this.results});
+  CardDescription({super.key, required this.movie});
 
-  Movie results;
+  MovieEntity movie;
   @override
   State<CardDescription> createState() => _CardDescriptionState();
 }
@@ -21,7 +21,7 @@ class _CardDescriptionState extends State<CardDescription> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.pushNamed(context, RoutesManager.movieDetails,
-          arguments: widget.results),
+          arguments: widget.movie),
       child: Container(
         decoration: BoxDecoration(
           color: ColorsManager.gray,
@@ -45,7 +45,7 @@ class _CardDescriptionState extends State<CardDescription> {
             SizedBox(
                 width: 130.w,
                 height: 130.h,
-                child: FilmCard(results: widget.results)),
+                child: FilmCard(results: widget.movie)),
             Padding(
               padding: EdgeInsets.only(top: 8.h, left: 8.w),
               child: Row(
@@ -59,7 +59,7 @@ class _CardDescriptionState extends State<CardDescription> {
                     width: 5.w,
                   ),
                   Text(
-                    widget.results?.voteAverage.toString() ?? "",
+                    widget.movie?.voteAverage.toString() ?? "",
                     style: AppStyle.textSlider,
                   ),
                 ],
@@ -68,14 +68,14 @@ class _CardDescriptionState extends State<CardDescription> {
             Padding(
               padding: EdgeInsets.only(left: 7.w),
               child: Text(
-                widget.results?.title.toString() ?? "",
+                widget.movie?.title.toString() ?? "",
                 style: AppStyle.textSlider,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 7.w),
               child: Text(
-                widget.results?.releaseDate.toString() ?? "",
+                widget.movie?.releaseDate.toString() ?? "",
                 style: AppStyle.dateSlider,
               ),
             ),

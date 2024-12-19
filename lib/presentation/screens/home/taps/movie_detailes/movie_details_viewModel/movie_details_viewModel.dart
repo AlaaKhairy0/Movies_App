@@ -1,34 +1,41 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/base/base_state.dart';
-import 'package:movies_app/data/api_manger/api_manager.dart';
-import 'package:movies_app/data/model/movie_details_response/MovieDetailsResponse.dart';
-import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/domain/entities/movie_details_entity.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
+import 'package:movies_app/domain/usecases/movie_details_usecase.dart';
+import 'package:movies_app/domain/usecases/similar_movies_usecase.dart';
 import 'package:movies_app/result.dart';
 
 class MovieDetailsViewModel extends Cubit<BaseState>{
-  MovieDetailsViewModel():super(LoadingState());
+  GetMovieDetailsUseCase? movieDetailsUseCase;
+  GetSimilarMoviesUseCase? similarMoviesUseCase;
+  MovieDetailsViewModel({ this.movieDetailsUseCase,this.similarMoviesUseCase}):super(LoadingState());
   void getMovieDetails(String movieId)async{
     emit(LoadingState());
-    var response = await ApiManager.getMovieDetails(movieId);
+    var response = await movieDetailsUseCase?.execute(movieId);
     switch (response){
-      case Success<MovieDetailsResponse>():
+      case Success<MovieDetailsEntity>():
          emit(SuccessState(data: response.data));
-      case ServerError<MovieDetailsResponse>():
+      case ServerError<MovieDetailsEntity>():
         emit(ErrorState(serverError: response));
-      case Error<MovieDetailsResponse>():
+      case Error<MovieDetailsEntity>():
         emit(ErrorState(error: response));
+      case null:
+        emit(LoadingState());
     }
   }
   void getSimilarMovies(String movieId)async{
     emit(LoadingState());
-    var response =await ApiManager.getSimilarMovies(movieId);
+    var response =await similarMoviesUseCase?.execute(movieId);
     switch(response){
-      case Success<List<Movie>>():
+      case Success<List<MovieEntity>>():
         emit(SuccessState(data: response.data));
-      case ServerError<List<Movie>>():
+      case ServerError<List<MovieEntity>>():
         emit(ErrorState(serverError: response));
-      case Error<List<Movie>>():
+      case Error<List<MovieEntity>>():
         emit((ErrorState(error: response)));
+      case null:
+        emit(LoadingState());
     }
 
   }

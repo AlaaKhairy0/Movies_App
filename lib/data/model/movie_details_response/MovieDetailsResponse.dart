@@ -1,3 +1,6 @@
+import 'package:movies_app/domain/entities/movie_details_entity.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
+
 import 'BelongsToCollection.dart';
 import 'Genres.dart';
 import 'ProductionCompanies.dart';
@@ -7,39 +10,41 @@ import 'SpokenLanguages.dart';
 class MovieDetailsResponse {
   MovieDetailsResponse({
     this.statusMessage,
-      this.adult, 
-      this.backdropPath, 
-      this.belongsToCollection, 
-      this.budget, 
-      this.genres, 
-      this.homepage, 
-      this.id, 
-      this.imdbId, 
-      this.originCountry, 
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.productionCompanies, 
-      this.productionCountries, 
-      this.releaseDate, 
-      this.revenue, 
-      this.runtime, 
-      this.spokenLanguages, 
-      this.status, 
-      this.tagline, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,
+    this.adult,
+    this.backdropPath,
+    this.belongsToCollection,
+    this.budget,
+    this.genres,
+    this.homepage,
+    this.id,
+    this.imdbId,
+    this.originCountry,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.productionCompanies,
+    this.productionCountries,
+    this.releaseDate,
+    this.revenue,
+    this.runtime,
+    this.spokenLanguages,
+    this.status,
+    this.tagline,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
   });
 
   MovieDetailsResponse.fromJson(dynamic json) {
     statusMessage = json['status_message'];
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    belongsToCollection = json['belongs_to_collection'] != null ? BelongsToCollection.fromJson(json['belongs_to_collection']) : null;
+    belongsToCollection = json['belongs_to_collection'] != null
+        ? BelongsToCollection.fromJson(json['belongs_to_collection'])
+        : null;
     budget = json['budget'];
     if (json['genres'] != null) {
       genres = [];
@@ -50,7 +55,9 @@ class MovieDetailsResponse {
     homepage = json['homepage'];
     id = json['id'];
     imdbId = json['imdb_id'];
-    originCountry = json['origin_country'] != null ? json['origin_country'].cast<String>() : [];
+    originCountry = json['origin_country'] != null
+        ? json['origin_country'].cast<String>()
+        : [];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
@@ -84,6 +91,7 @@ class MovieDetailsResponse {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
+
   String? statusMessage;
   bool? adult;
   String? backdropPath;
@@ -133,16 +141,19 @@ class MovieDetailsResponse {
     map['popularity'] = popularity;
     map['poster_path'] = posterPath;
     if (productionCompanies != null) {
-      map['production_companies'] = productionCompanies?.map((v) => v.toJson()).toList();
+      map['production_companies'] =
+          productionCompanies?.map((v) => v.toJson()).toList();
     }
     if (productionCountries != null) {
-      map['production_countries'] = productionCountries?.map((v) => v.toJson()).toList();
+      map['production_countries'] =
+          productionCountries?.map((v) => v.toJson()).toList();
     }
     map['release_date'] = releaseDate;
     map['revenue'] = revenue;
     map['runtime'] = runtime;
     if (spokenLanguages != null) {
-      map['spoken_languages'] = spokenLanguages?.map((v) => v.toJson()).toList();
+      map['spoken_languages'] =
+          spokenLanguages?.map((v) => v.toJson()).toList();
     }
     map['status'] = status;
     map['tagline'] = tagline;
@@ -153,4 +164,14 @@ class MovieDetailsResponse {
     return map;
   }
 
+  MovieDetailsEntity toMovieDetailsEntity() {
+    return MovieDetailsEntity(
+        voteAverage: voteAverage,
+        backdropPath: backdropPath,
+        releaseDate: releaseDate,
+        overview: overview,
+        title: title,
+        id: id,
+        genres: genres);
+  }
 }

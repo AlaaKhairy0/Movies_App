@@ -13,7 +13,7 @@ class ApiManager {
       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWEzNmQwMzMxZjViZjkwMzIyODJkYTNkZjIzM2RlNyIsIm5iZiI6MTczMzc5ODI4Mi45MTgwMDAyLCJzdWIiOiI2NzU3YTk4YTMxZjlkMWM4ZjIzNzBhZjAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Vk5nw3sTbjNo50yc4IcLbudE44J2qQwBi4CHj09OCf0';
   static String apiKey = 'dea36d0331f5bf9032282da3df233de7';
 
-  static Future<Result<List<Genre>>> getCategories() async {
+  Future<Result<List<Genre>>> getCategories() async {
     Uri url = Uri.https(baseUrl, '/3/genre/movie/list', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
@@ -33,7 +33,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Movie>>> getMoviesByCategory(String genre) async {
+  Future<Result<List<Movie>>> getMoviesByCategory(String genre) async {
     Uri url = Uri.https(baseUrl, '/3/discover/movie', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
@@ -55,7 +55,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Movie>>> search({required String query}) async {
+   Future<Result<List<Movie>>> search({required String query}) async {
     Uri url = Uri.https(baseUrl, '/3/search/movie', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
@@ -76,7 +76,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Movie>>> getMoviesSlider() async {
+   Future<Result<List<Movie>>> getMoviesSlider() async {
     Uri url = Uri.https(baseUrl, '/3/movie/popular', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
@@ -96,7 +96,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Movie>>> getNewReleases() async {
+   Future<Result<List<Movie>>> getNewReleases() async {
     Uri url = Uri.https(baseUrl, '/3/movie/upcoming', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
@@ -116,7 +116,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Movie>>> getRecommended() async {
+   Future<Result<List<Movie>>> getRecommended() async {
     Uri url = Uri.https(baseUrl, '/3/movie/top_rated', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,
@@ -137,7 +137,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<MovieDetailsResponse>> getMovieDetails(
+   Future<Result<MovieDetailsResponse>> getMovieDetails(
       String movieId) async {
     Uri url = Uri.https(baseUrl, '/3/movie/$movieId', {
       'api_key': apiKey,
@@ -159,7 +159,7 @@ class ApiManager {
     }
   }
 
-  static Future<Result<List<Movie>>> getSimilarMovies(String movieId) async {
+   Future<Result<List<Movie>>> getSimilarMovies(String movieId) async {
     Uri url = Uri.https(baseUrl, '/3/movie/$movieId/similar', {
       'api_key': apiKey,
       'Authorization': apiAccessToken,

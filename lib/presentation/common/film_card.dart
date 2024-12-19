@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/routes_manager.dart';
 import 'package:movies_app/data/model/movies_response/movie.dart';
-
+import 'package:movies_app/domain/entities/movie_entity.dart';
 import '../../core/constatns_manager.dart';
 
 class FilmCard extends StatefulWidget {
   FilmCard({super.key, required this.results});
 
-  Movie results;
+  MovieEntity results;
   bool isClicked = false;
 
   @override
