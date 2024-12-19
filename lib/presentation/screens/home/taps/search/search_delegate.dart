@@ -5,6 +5,7 @@ import 'package:movies_app/base/base_state.dart';
 import 'package:movies_app/core/assets_manager.dart';
 import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
 import 'package:movies_app/presentation/common/error_state_widget.dart';
 import 'package:movies_app/presentation/common/loading_state_widget.dart';
 import 'package:movies_app/presentation/common/movie_item.dart';
@@ -81,7 +82,7 @@ class MovieSearchDelegate extends SearchDelegate {
         if (state is LoadingState) {
           return  LoadingWidget();
         } else if (state is SuccessState) {
-          List<Movie> movies = state.data;
+          List<MovieEntity> movies = state.data;
           if (movies.isEmpty) {
             return Center(
               child: Image.asset(

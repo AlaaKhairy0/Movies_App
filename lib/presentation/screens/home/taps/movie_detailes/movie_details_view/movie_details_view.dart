@@ -7,8 +7,15 @@ import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/data/api_manger/api_manager.dart';
+import 'package:movies_app/data/data_source_impl/movie_details_data_source_impl.dart';
+import 'package:movies_app/data/data_source_impl/similar_movies_data_source_impl.dart';
 import 'package:movies_app/data/model/movie_details_response/MovieDetailsResponse.dart';
-import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/data/repo_impl/movie_details_repo_impl.dart';
+import 'package:movies_app/data/repo_impl/similar_movies_repo_impl.dart';
+import 'package:movies_app/domain/entities/movie_details_entity.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
+import 'package:movies_app/domain/usecases/movie_details_usecase.dart';
+import 'package:movies_app/domain/usecases/similar_movies_usecase.dart';
 import 'package:movies_app/presentation/common/error_state_widget.dart';
 import 'package:movies_app/presentation/common/film_card.dart';
 import 'package:movies_app/presentation/common/loading_state_widget.dart';
@@ -22,8 +29,9 @@ class MovieDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    MovieDetailsViewModel viewModel = MovieDetailsViewModel();
+    MovieEntity movie =
+        ModalRoute.of(context)!.settings.arguments as MovieEntity;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(movie.title ?? ''),
@@ -33,13 +41,17 @@ class MovieDetailsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BlocProvider(
-              create: (context) =>
-                  viewModel..getMovieDetails(movie.id.toString()),
+              create: (context) => MovieDetailsViewModel(
+                  movieDetailsUseCase: GetMovieDetailsUseCase(
+                      repo: MovieDetailsRepoImpl(
+                          dataSource: MovieDetailsDataSourceImpl(
+                              apiManager: ApiManager()))))
+                ..getMovieDetails(movie.id.toString()),
               child: BlocBuilder<MovieDetailsViewModel, BaseState>(
                 builder: (context, state) {
                   if (state is SuccessState) {
-                    MovieDetailsResponse movieDetails =
-                        state.data as MovieDetailsResponse;
+                    MovieDetailsEntity movieDetails =
+                        state.data as MovieDetailsEntity;
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -157,19 +169,24 @@ class MovieDetailsView extends StatelessWidget {
                       padding: REdgeInsets.only(left: 16),
                       height: 250.h,
                       child: BlocProvider(
-                        create: (context) =>
-                            MovieDetailsViewModel()..getSimilarMovies(movie.id.toString()),
-                        child: BlocBuilder<MovieDetailsViewModel,BaseState>(
+                        create: (context) => MovieDetailsViewModel(
+                            similarMoviesUseCase: GetSimilarMoviesUseCase(
+                                repo: SimilarMoviesRepoImpl(
+                                    dataSource: SimilarMoviesDataSourceImpl(
+                                        apiManager: ApiManager()))))
+                          ..getSimilarMovies(movie.id.toString()),
+                        child: BlocBuilder<MovieDetailsViewModel, BaseState>(
                           builder: (context, state) {
                             if (state is SuccessState) {
-                              List<Movie> movies = state.data as List<Movie> ;
+                              List<MovieEntity> movies =
+                                  state.data as List<MovieEntity>;
                               return ListView.builder(
                                 itemBuilder: (context, index) => Padding(
                                   padding: REdgeInsets.only(right: 13, top: 5),
                                   child: Padding(
                                     padding: REdgeInsets.symmetric(vertical: 6),
                                     child: CardDescription(
-                                      results: movies[index],
+                                      movie: movies[index],
                                     ),
                                   ),
                                 ),

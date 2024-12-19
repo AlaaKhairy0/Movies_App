@@ -6,7 +6,17 @@ import 'package:movies_app/config/theme/app_style.dart';
 import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/data/api_manger/api_manager.dart';
+import 'package:movies_app/data/data_source_impl/new_releases_movies_data_source_impl.dart';
+import 'package:movies_app/data/data_source_impl/recommended_movies_data_source_impl.dart';
+import 'package:movies_app/data/data_source_impl/slider_movies_data_source_impl.dart';
 import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/data/repo_impl/new_releases_movies_repo_impl.dart';
+import 'package:movies_app/data/repo_impl/recommended_movies_repo_impl.dart';
+import 'package:movies_app/data/repo_impl/slider_movies_repo_impl.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
+import 'package:movies_app/domain/usecases/new_releases_movies_usecase.dart';
+import 'package:movies_app/domain/usecases/recommended_movies_usecase.dart';
+import 'package:movies_app/domain/usecases/slider_movies_usecase.dart';
 import 'package:movies_app/presentation/common/card_description.dart';
 import 'package:movies_app/presentation/common/error_state_widget.dart';
 import 'package:movies_app/presentation/common/film_card.dart';
@@ -17,7 +27,19 @@ import 'package:movies_app/presentation/screens/home/taps/home/home_viewModel/ho
 class HomeView extends StatelessWidget {
   HomeView({super.key});
 
-  HomeViewModel viewModel = HomeViewModel();
+  HomeViewModel viewModel = HomeViewModel(
+      newReleasesUseCase: GetNewReleasesMoviesUseCase(
+          repo: NewReleasesMoviesRepoImpl(
+              dataSource:
+                  NewReleasesMoviesDataSourceImpl(apiManager: ApiManager()))),
+      recommendedUseCase: GetRecommendedMoviesUseCase(
+          repo: RecommendedMoviesRepoImpl(
+              dataSource:
+                  RecommendedMoviesDataSourceImpl(apiManager: ApiManager()))),
+      sliderUseCase: GetSliderMoviesUseCase(
+          repo: SliderMoviesRepoImpl(
+              dataSource:
+                  SliderMoviesDataSourceImpl(apiManager: ApiManager()))));
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +50,27 @@ class HomeView extends StatelessWidget {
           child: Column(
             children: [
               BlocProvider(
-                create: (context) => viewModel..getMoviesSlider(),
-                child: BlocBuilder<HomeViewModel,BaseState>(
+                create: (context) => HomeViewModel(
+                    sliderUseCase: GetSliderMoviesUseCase(
+                        repo: SliderMoviesRepoImpl(
+                            dataSource: SliderMoviesDataSourceImpl(
+                                apiManager: ApiManager()))),
+                    recommendedUseCase: null,
+                    newReleasesUseCase: null)
+                  ..getMoviesSlider(),
+                child: BlocBuilder<HomeViewModel, BaseState>(
                   builder: (context, state) {
-                    if(state is SuccessState){
-                      List<Movie> movies = state.data;
-                      return CarouselSliderWidget(movies: movies,);
+                    if (state is SuccessState) {
+                      List<MovieEntity> movies = state.data;
+                      return CarouselSliderWidget(
+                        movies: movies,
+                      );
                     }
-                    if(state is ErrorState){
-                      return ErrorStateWidget(error: state.error,serverError: state.serverError,);
+                    if (state is ErrorState) {
+                      return ErrorStateWidget(
+                        error: state.error,
+                        serverError: state.serverError,
+                      );
                     }
                     return LoadingWidget();
                   },
@@ -59,12 +93,15 @@ class HomeView extends StatelessWidget {
                     Container(
                       padding: REdgeInsets.only(left: 16),
                       height: 180.h,
-                      child:     BlocProvider(
-                        create: (context) => HomeViewModel()..getNewReleases(),
-                        child: BlocBuilder<HomeViewModel,BaseState>(
+                      child: BlocProvider(
+                        create: (context) => HomeViewModel(newReleasesUseCase: GetNewReleasesMoviesUseCase(
+                            repo: NewReleasesMoviesRepoImpl(
+                                dataSource:
+                                NewReleasesMoviesDataSourceImpl(apiManager: ApiManager()))),recommendedUseCase: null,sliderUseCase: null)..getNewReleases(),
+                        child: BlocBuilder<HomeViewModel, BaseState>(
                           builder: (context, state) {
-                            if(state is SuccessState){
-                              List<Movie> movies = state.data;
+                            if (state is SuccessState) {
+                              List<MovieEntity> movies = state.data;
                               return ListView.builder(
                                 itemBuilder: (context, index) => Padding(
                                   padding: REdgeInsets.only(right: 13),
@@ -76,8 +113,11 @@ class HomeView extends StatelessWidget {
                                 itemCount: movies.length,
                               );
                             }
-                            if(state is ErrorState){
-                              return ErrorStateWidget(error: state.error,serverError: state.serverError,);
+                            if (state is ErrorState) {
+                              return ErrorStateWidget(
+                                error: state.error,
+                                serverError: state.serverError,
+                              );
                             }
                             return LoadingWidget();
                           },
@@ -111,19 +151,22 @@ class HomeView extends StatelessWidget {
                       ),
                       height: 240.h,
                       child: BlocProvider(
-                        create: (context) => HomeViewModel()..getRecommended(),
-                        child: BlocBuilder<HomeViewModel,BaseState>(
+                        create: (context) => HomeViewModel(      recommendedUseCase: GetRecommendedMoviesUseCase(
+                            repo: RecommendedMoviesRepoImpl(
+                                dataSource:
+                                RecommendedMoviesDataSourceImpl(apiManager: ApiManager()))),sliderUseCase: null,newReleasesUseCase: null)..getRecommended(),
+                        child: BlocBuilder<HomeViewModel, BaseState>(
                           builder: (context, state) {
-                            if(state is SuccessState){
-                              List<Movie> movies = state.data;
+                            if (state is SuccessState) {
+                              List<MovieEntity> movies = state.data;
                               return ListView.builder(
                                 itemBuilder: (context, index) => Padding(
                                   padding: EdgeInsets.only(right: 13, top: 5.h),
                                   child: Padding(
                                     padding:
-                                    const EdgeInsets.symmetric(vertical: 6),
+                                        const EdgeInsets.symmetric(vertical: 6),
                                     child: CardDescription(
-                                      results: movies[index],
+                                      movie: movies[index],
                                     ),
                                   ),
                                 ),
@@ -131,8 +174,11 @@ class HomeView extends StatelessWidget {
                                 itemCount: movies.length,
                               );
                             }
-                            if(state is ErrorState){
-                              return ErrorStateWidget(error: state.error,serverError: state.serverError,);
+                            if (state is ErrorState) {
+                              return ErrorStateWidget(
+                                error: state.error,
+                                serverError: state.serverError,
+                              );
                             }
                             return LoadingWidget();
                           },

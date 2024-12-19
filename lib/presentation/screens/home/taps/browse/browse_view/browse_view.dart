@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/base/base_state.dart';
+import 'package:movies_app/data/api_manger/api_manager.dart';
+import 'package:movies_app/data/data_source_impl/categories_data_source_impl.dart';
 import 'package:movies_app/data/model/categories_response/genre.dart';
+import 'package:movies_app/data/repo_impl/categoris_repo_impl.dart';
+import 'package:movies_app/domain/usecases/categories_usecase.dart';
 import 'package:movies_app/presentation/common/error_state_widget.dart';
 import 'package:movies_app/presentation/common/loading_state_widget.dart';
 import 'package:movies_app/presentation/screens/home/taps/browse/browse_viewModel/browse_viewModel.dart';
@@ -18,7 +22,10 @@ class BrowseView extends StatefulWidget {
 }
 
 class _BrowseViewState extends State<BrowseView> {
-  BrowseViewModel viewModel = BrowseViewModel();
+  BrowseViewModel viewModel = BrowseViewModel(
+      useCase: GetCategoriesUseCase(
+          repo: CategoriesRepoImpl(
+              dataSource: CategoriesDataSourceImpl(apiManager: ApiManager()))));
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +56,8 @@ class _BrowseViewState extends State<BrowseView> {
                   ),
                   Expanded(
                     child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: (1 / .85),
                         crossAxisCount: 2,
                         crossAxisSpacing: 16,

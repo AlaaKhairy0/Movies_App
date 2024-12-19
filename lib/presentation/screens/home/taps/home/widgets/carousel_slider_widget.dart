@@ -7,6 +7,7 @@ import 'package:movies_app/core/colors_manager.dart';
 import 'package:movies_app/core/constatns_manager.dart';
 import 'package:movies_app/core/strings_manager.dart';
 import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
 import 'package:movies_app/presentation/common/film_card.dart';
 
 import '../../../../../../core/routes_manager.dart';
@@ -14,7 +15,7 @@ import '../../../../../../core/routes_manager.dart';
 class CarouselSliderWidget extends StatelessWidget {
   CarouselSliderWidget({super.key, required this.movies});
 
-  List<Movie> movies;
+  List<MovieEntity> movies;
 
   Movie? results;
 

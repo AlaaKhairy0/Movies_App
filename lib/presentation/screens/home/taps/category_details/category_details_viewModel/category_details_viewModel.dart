@@ -1,20 +1,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/base/base_state.dart';
-import 'package:movies_app/data/api_manger/api_manager.dart';
-import 'package:movies_app/data/model/movies_response/movie.dart';
+import 'package:movies_app/domain/entities/movie_entity.dart';
+import 'package:movies_app/domain/usecases/movies_by_category_usecase.dart';
 import 'package:movies_app/result.dart';
 
 class CategoryDetailsViewModel extends Cubit<BaseState>{
-  CategoryDetailsViewModel():super(LoadingState());
+  GetMoviesByCategoryUseCase useCase;
+  CategoryDetailsViewModel({required this.useCase}):super(LoadingState());
   void getMoviesByCategory(String genre)async{
     emit(LoadingState());
-    var response = await ApiManager.getMoviesByCategory(genre);
+    var response = await useCase.execute(genre);
     switch(response){
-      case Success<List<Movie>>():
+      case Success<List<MovieEntity>>():
         emit(SuccessState(data: response.data));
-      case ServerError<List<Movie>>():
+      case ServerError<List<MovieEntity>>():
         emit(ErrorState(serverError: response));
-      case Error<List<Movie>>():
+      case Error<List<MovieEntity>>():
         emit(ErrorState(error: response));
     }
   }
