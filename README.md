@@ -2,17 +2,29 @@
 
 **Movie Discovery App** built with Flutter.
 
-A cross-platform mobile application that allows users to discover and stream movies.
+Movies App is a beautifully designed mobile application that allows users to discover, explore, and keep track of their favorite movies. Whether you're looking for the latest blockbusters, trending films, or detailed movie information, this app delivers a smooth and intuitive experience.
 
 ---
 
 ## ✨ Features
+- 🔍 Search & Discover
+  Find trending, upcoming, and top-rated movies using real-time data from the TMDb API.
 
-- 🔍 Search and discover trending movies
-- 🎥 View movie details with posters, genres, ratings, and descriptions
-- ❤️ Save favorite films and manage user preferences
-- 🔥 Firebase integration for storing user data
-- 🌐 Integrated with external movie databases via APIs
+- 📄 Detailed Movie Pages
+  View rich movie details including title, synopsis, poster, genres, release date, and user ratings.
+
+- 🎞️ Browse by Categories
+  Explore movies grouped into different categories and genres such as Action, Comedy, Drama, Horror, and more. Easily filter your discovery experience based on your mood or interests.
+
+- ❤️ Favorites & Watchlist
+  Save movies you love or plan to watch with Firebase-backed persistent storage.
+
+- 📱 Responsive UI
+  Clean, adaptive user interface built with flutter_screenutil for a consistent experience across screen sizes.
+
+- 🔥 Firebase Integration
+  Uses Firebase Firestore to store user preferences and favorite movies.
+
 
 ---
 
@@ -71,21 +83,11 @@ to fetch movie data including titles, overviews, posters, genres, ratings, and m
 
 ---
 
-## 📦 Dependencies
+## 📱 Screenshots
 
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^1.0.8
-  flutter_screenutil: ^5.9.3
-  google_fonts: ^6.2.1
-  carousel_slider: ^5.0.0
-  http: ^1.2.2
-  firebase_core: ^3.8.1
-  cloud_firestore: ^5.5.1
-  flutter_bloc: ^8.1.6
-```
+| Home | Movie Details | Favorites |
+|------|----------------|-----------|
+| ![Home](screenshots/home.png) | ![Details](screenshots/details.png) | ![Favorites](screenshots/favorites.png) |
 
 ---
 
@@ -96,7 +98,7 @@ Watch the demo video of the app:
 
 ---
 
-## 🧑‍💻 Authors
+## 🧑‍💻 Contributors
 
 **Alaa Khairy** • [@AlaaKhairy0](https://github.com/AlaaKhairy0)  
 **Mohamed Abdallh** • [@bleo11](https://github.com/bleo11)
