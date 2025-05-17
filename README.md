@@ -85,9 +85,9 @@ to fetch movie data including titles, overviews, posters, genres, ratings, and m
 
 ## 📱 Screenshots
 
-| Home | Movie Details | Favorites |
-|------|----------------|-----------|
-| ![Home](screenshots/home.png) | ![Details](screenshots/details.png) | ![Favorites](screenshots/favorites.png) |
+| Home | Movie Details | WatchList                                       |
+|------|----------------|-------------------------------------------------|
+| ![Home](assets/screenshots/home.png) | ![Details](assets/screenshots/movie_details.png) | ![WatchList](assets/screenshots/watch_list.png) |
 
 ---
 
