@@ -7,22 +7,22 @@ Movies App is a beautifully designed mobile application that allows users to dis
 ---
 
 ## ✨ Features
-- 🔍 Search & Discover
+- **🔍 Search & Discover:**
   Find trending, upcoming, and top-rated movies using real-time data from the TMDb API.
 
-- 📄 Detailed Movie Pages
+- **📄 Detailed Movie Pages:**
   View rich movie details including title, synopsis, poster, genres, release date, and user ratings.
 
-- 🎞️ Browse by Categories
+- **🎞️ Browse by Categories:**
   Explore movies grouped into different categories and genres such as Action, Comedy, Drama, Horror, and more. Easily filter your discovery experience based on your mood or interests.
 
-- ❤️ Favorites & Watchlist
+- **❤️ Favorites & Watchlist:**
   Save movies you love or plan to watch with Firebase-backed persistent storage.
 
-- 📱 Responsive UI
+- **📱 Responsive UI:**
   Clean, adaptive user interface built with flutter_screenutil for a consistent experience across screen sizes.
 
-- 🔥 Firebase Integration
+- **🔥 Firebase Integration:**
   Uses Firebase Firestore to store user preferences and favorite movies.
 
 
