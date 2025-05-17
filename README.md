@@ -1,16 +1,70 @@
-# movies_app
+# 🎬 Movies App
 
-A new Flutter project.
+**Movie Discovery App** built with Flutter.
 
-## Getting Started
+A cross-platform mobile application that allows users to discover and stream movies.
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔍 Search and discover trending movies
+- 🎥 View movie details with posters, genres, ratings, and descriptions
+- ❤️ Save favorite films and manage user preferences
+- 🔥 Firebase integration for storing user data
+- 🌐 Integrated with external movie databases via RESTful APIs
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🏗 Architecture
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Clean Architecture** with feature-based modular structure
+- **MVVM Pattern** for separation of concerns
+- **BLoC** for reactive and maintainable state management
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK (3.0 or above recommended)
+- Firebase project (with `firebase_options.dart` generated)
+- Internet connection for API access
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AlaaKhairy0/Movies_App.git
+   cd movies_app
+
+2. Install dependencies:
+   ```bash
+      flutter pub get
+
+3. Run the app:
+   ```bash
+   flutter run
+
+## 🔥 Firebase Setup
+- This project includes firebase_options.dart. To regenerate it or link to your Firebase project:
+  ```bash
+   flutterfire configure
+
+
+## 📦 Dependencies
+http
+
+flutter_bloc
+
+firebase_core
+
+cloud_firestore
+
+flutter_screenutil
+
+carousel_slider
+
+## 📽 Demo Video
+Watch the demo video of the app:
+👉 [the demo](https://drive.google.com/file/d/1J_AofFClqZUP76huOM9M-PQMgoWggoqu/view?usp=sharing)
+
+## 🧑‍💻 Author
+• **Alaa khairy** – [AlaaKhairy0](https://github.com/AlaaKhairy0)
+• **Mohamed Abdallh** – [bleo11](https://github.com/bleo11) 
+
