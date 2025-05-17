@@ -46,6 +46,11 @@ A cross-platform mobile application that allows users to discover and stream mov
   ```bash
    flutterfire configure
 
+## 🌐 API Integration
+
+This app uses the [TMDb (The Movie Database) API](https://developers.themoviedb.org/3/getting-started/introduction)
+to fetch movie data including titles, overviews, posters, genres, ratings, and more.
+
 
 ## 📦 Dependencies
 http
