@@ -70,6 +70,6 @@ Watch the demo video of the app:
 👉 [the demo](https://drive.google.com/file/d/1J_AofFClqZUP76huOM9M-PQMgoWggoqu/view?usp=sharing)
 
 ## 🧑‍💻 Author
-• **Alaa khairy** – [AlaaKhairy0](https://github.com/AlaaKhairy0)
-• **Mohamed Abdallh** – [bleo11](https://github.com/bleo11) 
+- **Alaa khairy** – [AlaaKhairy0](https://github.com/AlaaKhairy0)
+- **Mohamed Abdallh** – [bleo11](https://github.com/bleo11) 
 
