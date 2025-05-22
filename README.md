@@ -101,7 +101,6 @@ Watch the demo video of the app:
 ## 🧑‍💻 Contributors
 
 **Alaa Khairy** • [@AlaaKhairy0](https://github.com/AlaaKhairy0)  
-**Mohamed Abdallh** • [@MohamedAElkhateeb]
-(https://github.com/MohamedAElkhateeb)
+**Mohamed Abdallh** • [@MohamedAElkhateeb](https://github.com/MohamedAElkhateeb)
 
 
